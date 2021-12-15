@@ -3,7 +3,7 @@ import React, {useCallback, useEffect, useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {addEditItem, addItem, changeItem} from "../../redux/todoReducer/action";
 import {currentSelector} from "../../redux/todoReducer/selector";
-import {getDate, validate,} from "./services";
+import {getDate} from "./services";
 
 export function InputField() {
 
@@ -20,6 +20,7 @@ export function InputField() {
         value.date = getDate();
         value.isSelect === true ? dispatch(addEditItem(value)) : dispatch(addItem(value))
     },[value]);
+
     useEffect(()=>{
         setValue({...current})
     },[current]);

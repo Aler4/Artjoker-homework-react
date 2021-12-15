@@ -1,0 +1,1 @@
+export const currencySelector = (state) => state.exchangeReducer.currency;

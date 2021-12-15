@@ -49,7 +49,7 @@ export const todoReducer = (state = initialState,action) => {
                     name: '',
                     date: '',
                     id: (state.todo.sort((a,b) => b.id - a.id)[0].id) +1,
-                    isSelect: action.data.isSelect}
+                    isSelect: false}
             }
 
             case DELL_ITEM:

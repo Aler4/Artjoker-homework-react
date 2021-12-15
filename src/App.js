@@ -1,14 +1,24 @@
-import logo from './logo.svg';
+
 import './App.css';
-import {InputField} from "./components/InputField";
-import {TodoList} from "./components/TodoList";
+import React from "react";
+import {NavBar} from "./components/NavBar";
+import {Route, Routes} from "react-router-dom";
+import {navConfig} from "./constants";
+import {Converter, Todo} from "./pages";
 
 function App() {
   return (
     <div className="App">
-        <h1>Todo</h1>
-      <InputField />
-      <TodoList />
+        <header>
+            <NavBar config={navConfig} />
+        </header>
+        <main>
+            <Routes>
+                <Route path={navConfig.home.path} exect element={<>Home</>} />
+                <Route path={navConfig.todo.path} exect element={<Todo/>} />
+                <Route path={navConfig.converter.path} exect element={<Converter/>} />
+            </Routes>
+        </main>
     </div>
   );
 }

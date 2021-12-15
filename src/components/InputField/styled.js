@@ -5,7 +5,6 @@ export const Form = styled.form`
     justify-content: center;
     display: flex;
     align-items: center;
-    flex-direction: column;
 `
 export const InputName = styled.input`    
     outline: none;
@@ -19,7 +18,6 @@ export const InputName = styled.input`
 export const Button = styled.input`    
     width: 50px;
     height: 50px;
-    margin-top: 10px;
     border: none;
     border-radius: 50%;
     background: aquamarine;
