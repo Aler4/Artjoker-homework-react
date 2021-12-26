@@ -1,9 +1,9 @@
-import {UPDATE_EXCHANGE} from "./action";
+import {SET_LOADING, UPDATE_EXCHANGE} from "./action";
 
 const initialState = {
     currency: {
-        isLoading: true,
-        items: null
+        isLoading: false,
+        items: null,
     }
 }
 
@@ -12,10 +12,12 @@ export const exchangeReducer = (state = initialState,action) => {
             case UPDATE_EXCHANGE:
                 return {
                     ...state,
-                    currency: {
-                        items: [...action.data],
-                        isLoading: false
-                    }
+                    currency: {isLoading:false, items: [...action.data]}
+                }
+            case SET_LOADING:
+                return {
+                    ...state,
+                    currency: {...state.currency, isLoading: action.data,},
                 }
             default: return initialState;
         }

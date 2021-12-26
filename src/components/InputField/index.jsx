@@ -13,7 +13,7 @@ export function InputField() {
 
     const handleName = useCallback((e) => {
         setValue({...value, name:e.target.value, id: value.id+1});
-    },[current]);
+    },[setValue,current]);
 
     const handleClick = useCallback((e) => {
         e.preventDefault();
@@ -23,10 +23,10 @@ export function InputField() {
 
     useEffect(()=>{
         setValue({...current})
-    },[current]);
+    },[current.name]);
 
     useEffect(()=>{
-        dispatch(changeItem(value.name,))
+        dispatch(changeItem(value.name))
     },[value.name]);
 
     return (

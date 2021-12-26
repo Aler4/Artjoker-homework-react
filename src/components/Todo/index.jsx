@@ -8,11 +8,11 @@ export function Todo({todo}) {
     const dispatch = useDispatch();
     const handleEdit = useCallback(() => {
         dispatch(editItem(todo))
-    },[])
+    },[dispatch,todo])
 
     const handleDelete = useCallback((e) => {
         dispatch(delItem(todo.id))
-    },[todo])
+    },[dispatch,todo])
 
     return (
         <TodoContainer>

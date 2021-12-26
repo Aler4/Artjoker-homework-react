@@ -6,7 +6,8 @@ import {Route, Routes} from "react-router-dom";
 import {navConfig} from "./constants";
 import {Converter, Todo} from "./pages";
 
-function App() {
+function App(props) {
+    console.log(props.store)
   return (
     <div className="App">
         <header>

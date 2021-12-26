@@ -1,4 +1,4 @@
-import React, {useCallback, useState} from "react";
+import React from "react";
 import {Img, Link} from "./styled";
 
 
@@ -14,7 +14,6 @@ export function NavBar(props) {
             <nav>
                 <Link to={config.home.path}>
                     <Img src='/NavBar-icons/home.png' alt={config.home.label}/>
-
                 </Link>
 
                 <Link to={config.todo.path}>

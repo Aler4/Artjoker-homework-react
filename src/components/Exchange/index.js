@@ -1,22 +1,21 @@
 import React, {useCallback, useEffect, useMemo, useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {currencySelector} from "../../redux/exchangeReducer/selectors";
-import {getApiCurrency, roundingNumber} from "./service";
-import {updateExchange} from "../../redux/exchangeReducer/action";
+import {updateRequest} from "../../redux/exchangeReducer/action";
 import {StyledBtn, StyledTable, StyledTdBased, StyledTdBuy, StyledTdCurr, StyledTdSale} from "./styled";
+import {roundingNumber} from "./service";
+
+
 export const Exchange = () => {
 
     const currency = useSelector(currencySelector);
     const [state, setState] = useState(currency);
     const dispatch = useDispatch();
 
-    useEffect(() => {
-        setState(currency)
-    },[setState]);
-
     const handleClick = useCallback(() => {
-        getApiCurrency.then(data => dispatch(updateExchange(data))).then(setState(currency));
-    });
+        dispatch(updateRequest());
+        setState(currency);
+    },[currency,dispatch]);
 
     const row = useMemo(() => {
         const currencies = state.items;
@@ -26,11 +25,11 @@ export const Exchange = () => {
                     <StyledTdCurr>{item.ccy}</StyledTdCurr>
                     <StyledTdBased>{item.base_ccy}</StyledTdBased>
                     <StyledTdBuy>{roundingNumber(item.buy, 2)}</StyledTdBuy>
-                    <StyledTdSale>{roundingNumber(item.sale, 2)}</StyledTdSale>
-                </tr>))
+                     <StyledTdSale>{roundingNumber(item.sale, 2)}</StyledTdSale>
+                </tr>)
+            )
         }
-        setState({...state, isLoading: true})
-    },[state.items]);
+    },[setState,state]);
 
     const table = (
         <StyledTable>
@@ -44,6 +43,11 @@ export const Exchange = () => {
             {row}
             </tbody>
         </StyledTable>);
+
+    useEffect(() => {
+        setState(currency)
+    });
+
     return (
         <>
             <StyledBtn onClick={handleClick}>Update</StyledBtn>
